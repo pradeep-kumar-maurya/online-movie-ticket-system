@@ -1,0 +1,24 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div align="center" class="table" *ngIf="check1">
+    <h3><u>Delete Theatre</u></h3><br>
+    <table border="2">
+        <tr>
+            <th>Theatre ID</th>
+            <th>Theatre Name</th>
+            <th>Theatre Manager</th>
+            <th>City Name</th>
+            <th>Manager Contact No.</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let theatre of theatres">
+            <td>{{theatre.theatre_Id}}</td>
+            <td>{{theatre.theatre_Name}}</td>
+            <td>{{theatre.theatre_manager}}</td>
+            <td>{{theatre.city_Name}}</td>
+            <td>{{theatre.manager_contact_no}}</td>
+            <td><input type="button" value="Delete" (click)="delete_theatre(theatre.theatre_Id)" class="btn btn-danger"></td>
+        </tr>
+        </table>
+        </div>

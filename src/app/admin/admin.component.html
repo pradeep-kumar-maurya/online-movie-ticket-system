@@ -1,0 +1,26 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<div class="col-lg-4 m-auto d-block">
+    <div *ngIf="check0">
+        <h2>Please login here</h2><br>
+        <form #userForm="ngForm">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="uname" [(ngModel)]="username" placeholder="enter username" required class="form-control" autocomplete="off">
+        <span id="uname1" class="text-danger"></span>
+    </div>
+    <br>
+    <div>
+        <label>Password:</label> 
+        <input type="password" name="pass" [(ngModel)]="password" placeholder="enter password" class="form-control" required>
+        <span id="pass1" class="text-danger"></span>
+    </div>
+    <br>
+    <div>
+        <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary" (click)="validate()">Log In</button>
+    </div>
+    </form>
+    </div>
+    </div>

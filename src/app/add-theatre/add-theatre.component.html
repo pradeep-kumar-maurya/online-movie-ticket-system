@@ -1,0 +1,29 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div *ngIf="check0">
+        <h2><u>Add Theatre Here</u></h2><br>
+        <label>Theatre ID:</label>
+        <input type="text" name="theatreid" [(ngModel)]="theatre_obj.theatre_Id" placeholder="enter theatre id" required class="form-control" autocomplete="off">
+        <label>Theatre Name:</label>
+        <input type="text" name="theatrename" [(ngModel)]="theatre_obj.theatre_Name" placeholder="enter theatre name" required class="form-control" autocomplete="off">
+        <label>Theatre Manager:</label>
+        <input type="text" name="theatremanager" [(ngModel)]="theatre_obj.theatre_manager" placeholder="enter manager name" required class="form-control" autocomplete="off">
+        <label>City Name:</label>
+        <input type="text" name="cityname" [(ngModel)]="theatre_obj.city_Name" placeholder="enter city name" required class="form-control" autocomplete="off">
+        <label>Manager Contect No.:</label>
+        <input type="text" name="contactno" [(ngModel)]="theatre_obj.manager_contact_no" placeholder="enter contact no." required class="form-control" autocomplete="off">
+        <br>
+        <input type="submit" value="Add City" (click)="add_theatre()" class="btn btn-success">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4" *ngIf="check1">
+        <h4>{{add_message}}</h4>
+    </div>
+</div>

@@ -1,0 +1,89 @@
+<head>
+  <title>
+    Booking a movie ticket
+  </title>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <style>
+    .span{
+      color: white;
+    }
+  </style>
+</head>
+
+<nav class="navbar navbar-light bg-dark">
+  <a class="navbar-brand font-weight-bold" href="#">
+    <span class="span">Online Movie Ticket System</span>
+   </a>
+
+   <div *ngIf="check1">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Book-ticket" class="btn btn-primary"><b>Book Movie Tickets</b></a>
+   </ul>
+   </div>
+
+   <div *ngIf="check1">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Cancel-ticket" class="btn btn-primary"><b>Cancel Movie Tickets</b></a>
+   </ul>
+  </div>
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Add-City" class="btn btn-primary"><b>Add City</b></a>
+   </ul>
+   </div>
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Add-Theatre" class="btn btn-primary"><b>Add Theatre</b></a>
+   </ul>
+   </div>
+
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Add-Movie" class="btn btn-primary"><b>Add Movie</b></a>
+   </ul>
+   </div>
+
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Delete-City" class="btn btn-primary"><b>Delete City</b></a>
+   </ul>
+   </div>
+
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Delete-Movie" class="btn btn-primary"><b>Delete Movie</b></a>
+   </ul>
+   </div>
+
+
+   <div *ngIf="check0">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Delete-Theatre" class="btn btn-primary"><b>Delete Theatre</b></a>
+   </ul>
+   </div>
+
+   <div *ngIf="check1">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Register" class="btn btn-primary"><b>Register</b></a>
+   </ul>
+  </div>
+
+  <div *ngIf="check1">
+   <ul  class="nav justify-content-end">
+    <a routerLink="Admin" class="btn btn-primary"><b>Admin</b></a>
+   </ul>
+  </div>
+
+</nav>
+<br>
+
+<div>
+  <router-outlet></router-outlet>
+</div>

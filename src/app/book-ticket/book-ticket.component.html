@@ -1,0 +1,225 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .color{
+            color: blue;
+        }
+        .booking{
+            color:red;
+        }
+    </style>
+</head>
+
+
+<div class="col-lg-4 m-auto d-block">
+<div *ngIf="checkAuthentication0">
+    <h2>Please login here</h2><br>
+    <form #userForm="ngForm">
+<div>
+    <label>Username:</label>
+    <input type="text" name="uname" [(ngModel)]="username" placeholder="enter username" required class="form-control" autocomplete="off">
+    <span id="uname1" class="text-danger"></span>
+</div>
+<br>
+<div>
+    <label>Password:</label> 
+    <input type="password" name="pass" [(ngModel)]="password" placeholder="enter password" class="form-control" required>
+    <span id="pass1" class="text-danger"></span>
+</div>
+<br>
+<div>
+    <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary" (click)="validate()">Log In</button>
+</div>
+</form>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+<div *ngIf="check0">
+    <h1 class="booking" >Book your tickets now</h1><br>
+    <div *ngIf="checkAuthentication1">
+        <h4>Select a city:</h4>
+        <select (change)="selectCity($event.target.value)" class="form-control custom-select form-control browser-default">
+            <option *ngFor="let city of cities" value={{city.city_Name}}>
+                {{city.city_Name}}
+            </option>
+        </select>
+    </div>
+
+    <div *ngIf="checkTheatre">
+        <h4>Select a theatre:</h4>
+        <select (change)="selectTheatre($event.target.value)" class="form-control custom-select form-control browser-default">
+        <option *ngFor="let theatre of theatres" value={{theatre.theatre_Name}}>
+            <span><span class='name'>{{theatre.theatre_Name}}</span></span>
+        </option>
+        </select>
+    </div>
+
+    <div *ngIf="checkMovies">
+        <h4>Select a Movie:</h4>
+        <select (change)="selectMovie($event.target.value)" class="form-control custom-select form-control browser-default">
+        <option *ngFor="let movie of movie_details" value="{{movie.movie_Name}}">
+           {{movie.movie_Name}}
+        </option>
+        </select>
+    </div>
+
+    <div *ngIf="checkShows">
+        <h4>Select a show:</h4>
+        <select (change)="selectShow($event.target.value,$event.target.value)" class="form-control custom-select form-control browser-default">
+        <option *ngFor="let shows of show_details">
+            {{shows.show}}({{shows.timings}})
+        </option>
+        </select>
+    </div>
+
+    <div *ngIf="checkLanguage">
+        <h4>Select a language:</h4>
+    <select (change)="selectLanguage($event.target.value, $event.target.value)" class="form-control custom-select form-control browser-default">
+        <option *ngFor="let languages of language_details">
+            {{languages.language}}({{languages.screen}})
+        </option>
+    </select>
+    </div>
+
+    <div *ngIf="checkSeats" class="table">
+        <h4>Select the seat type:</h4>
+        <tr class="w3-light-grey w3-hover-red">
+            <th>Seat Type</th>
+            <th>Seats Available</th>
+            <th>Price</th>
+        </tr>
+        <tr *ngFor="let seat of seats" class="w3-hover-black">
+            <td><input type="submit" value={{seat.seat_type}} (click)="chosenSeat(seat)" class="btn btn-success"></td>
+            <td>{{seat.available_seats}}</td>
+            <td>{{seat.price}}</td>
+        </tr>
+    </div>
+
+    <div *ngIf="check">
+        <h4>Enter the no. of seats to be booked:</h4>
+        <form #userForm="ngForm">
+        <input type="text" name="seatsBooked" placeholder="enter no. of seats" [(ngModel)]="no_of_seats" required class="form-control"><br>
+        <button type="submit" [disabled]="userForm.invalid" (click)="no_of_seats_selected()" class="btn btn-primary">submit</button>
+    </form>
+    </div>
+
+    <div *ngIf="check1">
+        <br>
+        <h4>Your total amount is: <u><span class="color">Rs. {{total_amount}}.00</span></u></h4><br>
+        <h4>Are you sure you want to book tickets?</h4><br>
+        <input type="submit" value="Yes" class="btn btn-success" (click)="yes()">
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="submit" value="No" class="btn btn-danger" (click)="no()">
+    </div>
+
+    <div *ngIf="check6">
+        <h4>Enter your card no. for online transaction:</h4> 
+        <form #userForm="ngForm">
+        <input type="text" name="account" [(ngModel)]="accountNo" required class="form-control" placeholder="enter your card no."><br>
+        <button type="submit" [disabled]="userForm.invalid" (click)="entered_accountNo()" class="btn btn-primary">submit</button>
+    </form>
+    </div>
+
+    <div *ngIf="check5">
+        <h4 style="color: red;">enter a valid amount of seats to be booked!!</h4>
+    </div>
+    <br>
+
+    <div *ngIf="check2">
+        <h4 style="color: red;">sorry, you won't have sufficient account balance</h4>
+    </div>
+
+    <div *ngIf="check4">
+        <h4 style="color: red;">sorry, entered account number is not correct or does not exist!!</h4>
+    </div>
+</div>
+</div>
+
+    <br>
+
+    <div class="container">
+    <div class="col-lg-6 m-auto d-block">
+    <div *ngIf="check3">
+        <h3 class="booking">Hurray! your tickets are booked...</h3>
+        <h3 class="booking"><u>Your booking slip is shown below :</u></h3>
+        <div class="row">
+            <div class="col-6">
+                <h4>City</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.city}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Theatre</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.theatre}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Movie</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.movie}}</span></h4>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Show</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.show}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Language</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.language}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Seat type</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.seat_type}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Seats booked</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.seats_booked}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Total amount</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.amount}}</span></h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h4>Date of booking</h4>
+            </div>
+            <div class="col-6">
+                <h4><span class="color">: {{booking_slip.booking_date}}</span></h4>
+            </div>
+        </div>
+        <div>
+            <h4 class="booking">**Booking ID :{{payment_message.booking_id}}**</h4>
+        </div>
+    </div>
+</div>
+</div>

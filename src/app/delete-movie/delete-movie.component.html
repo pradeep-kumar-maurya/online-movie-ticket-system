@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<div align="center" class="table" *ngIf="check1">
+    <h3><u>Delete Movie</u></h3><br>
+    <table border="2">
+        <tr>
+            <th>Movie ID</th>
+            <th>Movie Name</th>
+            <th>movie Genre</th>
+            <th>movie Director</th>
+            <th>movie Length</th>
+            <th>movie Release_Date</th>
+            <th>theatre Name</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let movie of movies">
+            <td>{{movie.movie_Id}}</td>
+            <td>{{movie.movie_Name}}</td>
+            <td>{{movie.movie_Genre}}</td>
+            <td>{{movie.movie_Director}}</td>
+            <td>{{movie.movie_Length}}</td>
+            <td>{{movie.movie_Release_Date}}</td>
+            <td>{{movie.theatre_Name}}</td>
+            <td><input type="button" value="Delete" (click)="delete_movie(movie.movie_Id)" class="btn btn-danger"></td>
+        </tr>
+        </table>
+        </div>
